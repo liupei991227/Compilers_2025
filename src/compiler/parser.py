@@ -386,11 +386,7 @@ def parse(tokens: list[Token], right_associative: bool = False) -> ast.Expressio
         else:
             raise Exception(f"Unknown type {token.text}")
         
-    def ContinueException() -> None:
-        pass
 
-    def BreakException(value: ast.Expression | None = None) -> None:
-        return value
         
     result = parse_top_level()
     if pos != len(tokens):

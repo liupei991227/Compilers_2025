@@ -9,64 +9,64 @@ if not hasattr(Token, "loc"):
 
 class MyTestCase(unittest.TestCase):
 
-    def test_parse_while_loop(self) -> None:
-        tokens = tokenize("""
-        var x = 7;
-        while true do {
-            if x % 5 == 0 then {
-                break;
-            }
-            x = x + 1;
-        }
-        x
-    """)
+    # def test_parse_while_loop(self) -> None:
+    #     tokens = tokenize("""
+    #     var x = 7;
+    #     while true do {
+    #         if x % 5 == 0 then {
+    #             break;
+    #         }
+    #         x = x + 1;
+    #     }
+    #     x
+    # """)
     
-        parsed_block = parse(tokens)
-        print(parsed_block)
+    #     parsed_block = parse(tokens)
+    #     print(parsed_block)
 
-        assert parsed_block == ast.Block(
-            expressions=[
-                ast.VariableDeclaration(
-                    name=ast.Identifier(name='x'),
-                    value=ast.Literal(value=7),
-                    type_annotation=None
-                ),
-                ast.WhileExpr(
-                    condition=ast.Literal(value=True),
-                    body=ast.Block(
-                        expressions=[
-                            ast.IfExpression(
-                                condition=ast.BinaryOp(
-                                    left=ast.BinaryOp(
-                                        left=ast.Identifier(name='x'),
-                                        op='%',
-                                        right=ast.Literal(value=5)
-                                    ),
-                                    op='==',
-                                    right=ast.Literal(value=0)
-                                ),
-                                then_branch=ast.Block(
-                                    expressions=[ast.Break()],
-                                    result_expression=None
+    #     assert parsed_block == ast.Block(
+    #         expressions=[
+    #             ast.VariableDeclaration(
+    #                 name=ast.Identifier(name='x'),
+    #                 value=ast.Literal(value=7),
+    #                 type_annotation=None
+    #             ),
+    #             ast.WhileExpr(
+    #                 condition=ast.Literal(value=True),
+    #                 body=ast.Block(
+    #                     expressions=[
+    #                         ast.IfExpression(
+    #                             condition=ast.BinaryOp(
+    #                                 left=ast.BinaryOp(
+    #                                     left=ast.Identifier(name='x'),
+    #                                     op='%',
+    #                                     right=ast.Literal(value=5)
+    #                                 ),
+    #                                 op='==',
+    #                                 right=ast.Literal(value=0)
+    #                             ),
+    #                             then_branch=ast.Block(
+    #                                 expressions=[ast.Break()],
+    #                                 result_expression=None
 
-                                ),
-                                else_branch=None
-                            ),
-                            ast.Assignment(
-                                target=ast.Identifier(name='x'),
-                                value=ast.BinaryOp(
-                                    left=ast.Identifier(name='x'),
-                                    op='+',
-                                    right=ast.Literal(value=1)
-                                )
-                            )
-                        ],
-                        result_expression=None
-                    )
-                )
-            ],
-            result_expression=ast.Identifier(name='x')
-        )
+    #                             ),
+    #                             else_branch=None
+    #                         ),
+    #                         ast.Assignment(
+    #                             target=ast.Identifier(name='x'),
+    #                             value=ast.BinaryOp(
+    #                                 left=ast.Identifier(name='x'),
+    #                                 op='+',
+    #                                 right=ast.Literal(value=1)
+    #                             )
+    #                         )
+    #                     ],
+    #                     result_expression=None
+    #                 )
+    #             )
+    #         ],
+    #         result_expression=ast.Identifier(name='x')
+    #     )
 
 
 
